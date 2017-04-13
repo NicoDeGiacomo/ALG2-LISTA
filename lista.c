@@ -96,7 +96,10 @@ void lista_destruir(lista_t *lista, void (*destruir_dato)(void *)){
         free(lista);
         return;
     }
-    destruir_dato(lista_borrar_primero(lista));
+    if(destruir_dato)
+        destruir_dato(lista_borrar_primero(lista));
+    else
+        lista_borrar_primero(lista);
     return lista_destruir(lista, destruir_dato);
 }
 

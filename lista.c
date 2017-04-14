@@ -180,8 +180,8 @@ void lista_iterar(lista_t *lista, bool (*visitar)(void *dato, void *extra), void
     if (lista_esta_vacia(lista))
         return;
     void* dato = lista_borrar_primero(lista);
-    visitar(dato, extra);
-    lista_iterar(lista, visitar, extra);
+    if (visitar(dato, extra))
+        lista_iterar(lista, visitar, extra);
     lista_insertar_primero(lista,dato);
     return;
 }

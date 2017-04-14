@@ -118,6 +118,14 @@ bool contar_repeticiones_uno(void* dato, void* contador){
     return true;
 }
 
+bool contar_con_corte(void* dato, void* contador){
+    if (*(int*)contador == 4){
+        return false;
+    }
+    *(int*)contador +=1;
+    return true;
+}
+
 void pruebas_iterador_interno(){
     int a = 1;
     int b = 2;
@@ -131,6 +139,12 @@ void pruebas_iterador_interno(){
     int contador = 0;
     lista_iterar(lista, contar_repeticiones_uno, &contador);
     print_test("Contador es 3", contador == 3);
+
+
+    contador = 0;
+    lista_iterar(lista, contar_con_corte, &contador);
+    print_test("Contador es 4", contador == 4);
+
     lista_destruir(lista, NULL);
 }
 

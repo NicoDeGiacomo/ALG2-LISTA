@@ -93,19 +93,19 @@ void pruebas_iterador_externo(){
     print_test("Avanzar es false", !lista_iter_avanzar(iter));
     print_test("Borrar es NULL", lista_iter_borrar(iter) == NULL);
     print_test("Ver actual es NULL", lista_iter_ver_actual(iter) == NULL);
-    print_test("Lista esta al final", lista_iter_al_final(iter));
-    lista_iter_insertar(iter, &b);
-    print_test("El ultimo es b", lista_ver_ultimo(lista) == &b);
     lista_iter_destruir(iter);
+    print_test("El primero es a", lista_ver_primero(lista) == &a);
+    print_test("El ultimo es a", lista_ver_ultimo(lista) == &a);
+    print_test("Inserto b como ultimo", lista_insertar_ultimo(lista,&b));
+    print_test("El ultimo es b", lista_ver_ultimo(lista) == &b);
 
     iter = lista_iter_crear(lista);
     print_test("No al final", !lista_iter_al_final(iter));
     print_test("Ver actual es a", lista_iter_ver_actual(iter) == &a);
     print_test("Borrar es a", lista_iter_borrar(iter) == &a);
+    print_test("Lista no esta vacia", !lista_esta_vacia(lista));
+    print_test("Iterador no al final", !lista_iter_al_final(iter));
     print_test("Ver actual es b", lista_iter_ver_actual(iter) == &b);
-    print_test("Borrar es b", lista_iter_borrar(iter) == &b);
-    print_test("Lista esta vacia", lista_esta_vacia(lista));
-    print_test("Iterador al final", lista_iter_al_final(iter));
 
     lista_iter_destruir(iter);
     lista_destruir(lista,NULL);

@@ -1,7 +1,11 @@
+//Nombre: Nicolás De Giácomo
+//Padron: 99702
+//Corrector: Matias C.
 #ifndef PILA_H
 #define PILA_H
 
 #include <stdbool.h>
+#include <stdlib.h>
 
 //Tipo de datos
 struct lista;
@@ -31,5 +35,7 @@ void *lista_iter_borrar(lista_iter_t *iter);
 
 //Primitivas de iterador interno
 void lista_iterar(lista_t *lista, bool (*visitar)(void *dato, void *extra), void *extra);
+
+void pruebas_lista_alumno(void);
 
 #endif // PILA_H

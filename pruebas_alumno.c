@@ -101,7 +101,11 @@ void pruebas_iterador_externo(){
     iter = lista_iter_crear(lista);
     print_test("No al final", !lista_iter_al_final(iter));
     print_test("Ver actual es a", lista_iter_ver_actual(iter) == &a);
-
+    print_test("Borrar es a", lista_iter_borrar(iter) == &a);
+    print_test("Ver actual es b", lista_iter_ver_actual(iter) == &b);
+    print_test("Borrar es b", lista_iter_borrar(iter) == &b);
+    print_test("Lista esta vacia", lista_esta_vacia(lista));
+    print_test("Iterador al final", lista_iter_al_final(iter));
 
     lista_iter_destruir(iter);
     lista_destruir(lista,NULL);

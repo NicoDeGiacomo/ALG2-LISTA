@@ -25,6 +25,15 @@ struct lista_iter{
     lista_t* lista;
 };
 
+nodo_t* nodo_crear(nodo_t* prox, void* dato){
+    nodo_t* nodo = malloc(sizeof(nodo_t));
+    if (!nodo)
+        return NULL;
+    nodo->dato = dato;
+    nodo->prox = prox;
+    return nodo;
+}
+
 lista_t *lista_crear(void){
     lista_t* lista = malloc(sizeof(lista_t));
     if (!lista)
@@ -40,11 +49,9 @@ bool lista_esta_vacia(const lista_t *lista){
 }
 
 bool lista_insertar_primero(lista_t *lista, void *dato){
-    nodo_t* nodo = malloc(sizeof(nodo_t));
+    nodo_t* nodo = nodo_crear(lista->primero, dato);
     if(!nodo)
         return false;
-    nodo->dato = dato;
-    nodo->prox = lista->primero;
     lista->primero = nodo;
     lista->largo++;
     if(lista->largo == 1)
@@ -53,11 +60,9 @@ bool lista_insertar_primero(lista_t *lista, void *dato){
 }
 
 bool lista_insertar_ultimo(lista_t *lista, void *dato){
-    nodo_t* nodo = malloc(sizeof(nodo_t));
+    nodo_t* nodo = nodo_crear(NULL, dato);
     if(!nodo)
         return false;
-    nodo->dato = dato;
-    nodo->prox = NULL;
     lista->largo++;
     if (lista->ultimo)
         lista->ultimo->prox = nodo;
@@ -143,11 +148,9 @@ void lista_iter_destruir(lista_iter_t *iter){
 }
 
 bool lista_iter_insertar(lista_iter_t *iter, void *dato){
-    nodo_t* nodo = malloc(sizeof(nodo_t));
+    nodo_t* nodo = nodo_crear(iter->actual, dato);
     if (!nodo)
         return false;
-    nodo->dato = dato;
-    nodo->prox = iter->actual;
     if (iter->anterior)
         iter->anterior->prox = nodo;
     else
